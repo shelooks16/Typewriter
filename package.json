@@ -1,0 +1,8 @@
+{
+  "name": "lightweight-typewriter",
+  "version": "1.0.1",
+  "description": "Lightweight typewriter",
+  "author": "shelooks16",
+  "license": "MIT",
+  "main": "dist/TypeWriter.js"
+}
