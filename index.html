@@ -47,45 +47,21 @@
 
     <script src="dist/TypeWriter.min.js"></script>
     <script>
-      (function(arr) {
-        arr.forEach(function(item) {
-          if (item.hasOwnProperty("remove")) {
-            return;
-          }
-          Object.defineProperty(item, "remove", {
-            configurable: true,
-            enumerable: true,
-            writable: true,
-            value: function remove() {
-              if (this.parentNode !== null) this.parentNode.removeChild(this);
-            }
-          });
-        });
-      })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
-
       var speedValue = document.querySelector("#spd");
       var pauseValue = document.querySelector("#ps");
       var staticValue = document.querySelector("#st");
       var applyBtn = document.querySelector("#apply");
 
-      applyBtn.addEventListener("click", function() {
-        document.querySelector(".typewriter").remove();
-        var newTyper = document.createElement("h1");
-        newTyper.classList.add("typewriter");
-        document.body.insertBefore(newTyper, document.body.childNodes[0]);
-        new TypeWriter({
-          elementClass: "typewriter",
-          text: ["broccoli?", "pretzels!"],
-          speed: speedValue.value,
-          pause: pauseValue.value,
-          staticText: staticValue.value
-        });
-      });
-
-      var typeWriter = new TypeWriter({
+      var x = new TypeWriter({
         elementClass: "typewriter",
         text: ["broccoli?", "pretzels!"],
         staticText: "I enjoy"
+      });
+
+      applyBtn.addEventListener("click", function() {
+        x.pause = pauseValue.value;
+        x.staticText = staticValue.value;
+        x.speed = speedValue.value;
       });
     </script>
   </body>
