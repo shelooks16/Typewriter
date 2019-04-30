@@ -1,8 +1,20 @@
 {
   "name": "lightweight-typewriter",
-  "version": "1.0.1",
+  "main": "dist/TypeWriter.min.js",
+  "version": "2.0.0",
   "description": "Lightweight typewriter",
-  "author": "shelooks16",
+  "keywords": [
+    "typewriter",
+    "typewriter browser",
+    "simple typewriter",
+    "auto typing",
+    "typing effect"
+  ],
+  "author": "shelooks16 <blauyedz@zoho.eu>",
   "license": "MIT",
-  "main": "dist/TypeWriter.js"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shelooks16/Typewriter.git"
+  },
+  "homepage": "https://github.com/shelooks16/Typewriter#readme"
 }

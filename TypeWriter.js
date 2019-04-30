@@ -1,54 +1,82 @@
-class TypeWriter {
-  constructor({ elementClass, text, staticText = '', pause = 1500, speed = 1000, cursorStyle = {} }) {
-    if (!text || !elementClass) {
-      return console.error('Please provide proper parameters');
-    }
-    this.speed = speed;
-    this.textArray = text;
-    this.el = document.querySelector(`.${elementClass}`);
-    this.loopsCounter = 0;
-    this.pauseTime = parseInt(pause, 10);
-    this.currentLetters = '';
-    this.staticText = staticText;
-    this.isDeleting = false;
-    this.__start();
-    this.__injectCss(cursorStyle);
-  }
-
-  __start() {
-    const i = this.loopsCounter % this.textArray.length;
-    const word = this.textArray[i];
-    let typeSpeed = this.speed / word.length;
-    typeSpeed = this.isDeleting ? typeSpeed /= 2 : typeSpeed; // make it faster
-
-    this.currentLetters = this.__getCurrentLetters(word);
-    this.el.innerHTML = `<span class="${this.el.className}-text">${this.staticText} ${this.currentLetters}</span>`;
-
-    if (!this.isDeleting && this.currentLetters === word) {
-      typeSpeed = this.pauseTime;
-      this.isDeleting = true;
-    } else if (this.isDeleting && this.currentLetters === '') {
-      this.isDeleting = false;
-      this.loopsCounter++;
-      typeSpeed = 500;
-    }
-
-    setTimeout(() => {
+(function() {
+  let currentLetters;
+  let isDeleting;
+  let loopsCounter;
+  let el;
+  class TypeWriter {
+    constructor({
+      elementClass,
+      text,
+      staticText = "",
+      pause = 1500,
+      speed = 1000,
+      cursorStyle = { color: "#000", width: "2px" }
+    }) {
+      if (!text || !elementClass) {
+        return console.error("Please provide proper parameters");
+      }
+      this.staticText = staticText;
+      this.text = text;
+      this.speed = speed;
+      this.pause = parseInt(pause, 10);
+      this.cursorStyle = cursorStyle;
+      el = document.querySelector(`.${elementClass}`);
+      loopsCounter = 0;
+      currentLetters = "";
+      isDeleting = false;
       this.__start();
-    }, typeSpeed);
-
-  }
-  __getCurrentLetters(word) {
-    if (this.isDeleting) {
-      return word.substring(0, this.currentLetters.length - 1);
+      this.injectStyles();
     }
-    return word.substring(0, this.currentLetters.length + 1);
+
+    __start() {
+      const i = loopsCounter % this.text.length;
+      const word = this.text[i];
+      let typeSpeed = this.speed / word.length;
+      typeSpeed = isDeleting ? (typeSpeed /= 2) : typeSpeed; // make it faster
+
+      currentLetters = this.__getCurrentLetters(word);
+      el.innerHTML = `<span class="${el.className}-text">${
+        this.staticText
+      } ${currentLetters}</span>`;
+
+      if (!isDeleting && currentLetters === word) {
+        typeSpeed = this.pause;
+        isDeleting = true;
+      } else if (isDeleting && currentLetters === "") {
+        isDeleting = false;
+        loopsCounter++;
+        typeSpeed = 500;
+      }
+
+      setTimeout(() => {
+        this.__start();
+      }, typeSpeed);
+    }
+    __getCurrentLetters(word) {
+      if (isDeleting) {
+        return word.substring(0, currentLetters.length - 1);
+      }
+      return word.substring(0, currentLetters.length + 1);
+    }
+    injectStyles() {
+      const css = document.createElement("style");
+      const cssRule = `.${el.className} > .${
+        el.className
+      }-text { border-right: ${this.cursorStyle.width || "2px"} solid ${this
+        .cursorStyle.color || "#000"}}`;
+      css.appendChild(document.createTextNode(cssRule));
+      document.getElementsByTagName("head")[0].appendChild(css);
+    }
   }
-  __injectCss(cursorStyle) {
-    const css = document.createElement("style");
-    css.type = "text/css";
-    css.innerHTML =
-      `.${this.el.className} > .${this.el.className}-text { border-right: ${cursorStyle.width || "2px"} solid ${cursorStyle.color || "#000"}}`;
-    document.body.appendChild(css);
+  if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
+    module.exports = TypeWriter;
+  } else {
+    if (typeof define === "function" && define.amd) {
+      define([], function() {
+        return TypeWriter;
+      });
+    } else {
+      window["TypeWriter"] = TypeWriter;
+    }
   }
-}
+})();

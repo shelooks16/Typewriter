@@ -1,95 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>TypeWriter</title>
+    <style>
+      body {
+        padding-top: 5em;
+        text-align: center;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>TypeWriter</title>
-  <style>
-    body {
-      padding-top: 5em;
-      text-align: center;
-    }
+      h1 {
+        text-align: center;
+      }
 
-    h1 {
-      text-align: center;
-    }
+      .all {
+        display: inline-block;
+        text-align: left;
+      }
 
-    .all {
-      display: inline-block;
-      text-align: left;
-    }
+      input {
+        width: 100px;
+      }
 
-    input {
-      width: 100px;
-    }
+      button {
+        width: 100%;
+      }
+    </style>
+  </head>
 
-    button {
-      width: 100%;
-    }
-  </style>
-</head>
+  <body>
+    <h1 class="typewriter"></h1>
+    <div class="all">
+      <input id="spd" type="number" value="1000" step="100" min="0" />
+      <label for="speed">speed (ms)</label>
+      <br /><br />
+      <input id="ps" type="number" value="1500" step="100" min="0" />
+      <label for="pause">pause (ms)</label>
+      <br /><br />
+      <input id="st" type="text" />
+      <label for="static">staticText</label>
+      <br /><br />
+      <button id="apply">Apply</button>
+    </div>
 
-<body>
-  <h1 class="typewriter"></h1>
-  <div class="all">
-    <input id='spd' type="number" value='1000' step='100' min='0' />
-    <label for="speed">speed (ms)</label>
-    <br /><br />
-    <input id='ps' type="number" value='1500' step='100' min='0' />
-    <label for="pause">pause (ms)</label>
-    <br /><br />
-    <input id='st' type="text" />
-    <label for="static">staticText</label>
-    <br /><br />
-    <button id="apply">Apply</button>
-  </div>
-
-  <script src="https://unpkg.com/lightweight-typewriter@1.0.1/dist/TypeWriter.js"></script>
-  <script>
-    (function (arr) {
-      arr.forEach(function (item) {
-        if (item.hasOwnProperty('remove')) {
-          return;
-        }
-        Object.defineProperty(item, 'remove', {
-          configurable: true,
-          enumerable: true,
-          writable: true,
-          value: function remove() {
-            if (this.parentNode !== null)
-              this.parentNode.removeChild(this);
+    <script src="dist/TypeWriter.min.js"></script>
+    <script>
+      (function(arr) {
+        arr.forEach(function(item) {
+          if (item.hasOwnProperty("remove")) {
+            return;
           }
+          Object.defineProperty(item, "remove", {
+            configurable: true,
+            enumerable: true,
+            writable: true,
+            value: function remove() {
+              if (this.parentNode !== null) this.parentNode.removeChild(this);
+            }
+          });
+        });
+      })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
+
+      var speedValue = document.querySelector("#spd");
+      var pauseValue = document.querySelector("#ps");
+      var staticValue = document.querySelector("#st");
+      var applyBtn = document.querySelector("#apply");
+
+      applyBtn.addEventListener("click", function() {
+        document.querySelector(".typewriter").remove();
+        var newTyper = document.createElement("h1");
+        newTyper.classList.add("typewriter");
+        document.body.insertBefore(newTyper, document.body.childNodes[0]);
+        new TypeWriter({
+          elementClass: "typewriter",
+          text: ["broccoli?", "pretzels!"],
+          speed: speedValue.value,
+          pause: pauseValue.value,
+          staticText: staticValue.value
         });
       });
-    })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
 
-    var speedValue = document.querySelector('#spd');
-    var pauseValue = document.querySelector('#ps');
-    var staticValue = document.querySelector('#st');
-    var applyBtn = document.querySelector('#apply');
-
-    applyBtn.addEventListener('click', function () {
-      document.querySelector('.typewriter').remove();
-      var newTyper = document.createElement('h1');
-      newTyper.classList.add('typewriter');
-      document.body.insertBefore(newTyper, document.body.childNodes[0]);
-      new TypeWriter({
+      var typeWriter = new TypeWriter({
         elementClass: "typewriter",
-        text: ['broccoli?', 'pretzels!'],
-        speed: speedValue.value,
-        pause: pauseValue.value,
-        staticText: staticValue.value
+        text: ["broccoli?", "pretzels!"],
+        staticText: "I enjoy"
       });
-    });
-
-    new TypeWriter({
-      elementClass: "typewriter",
-      text: ['broccoli?', 'pretzels!'],
-      staticText: 'I enjoy'
-    });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
