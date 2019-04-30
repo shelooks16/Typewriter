@@ -11,7 +11,7 @@ Demo is available [here](https://shelooks16.github.io/Typewriter/)
 Add it to your html:
 
 ```html
-<script src="https://unpkg.com/lightweight-typewriter@2.0.0/dist/TypeWriter.js"></script>
+<script src="https://unpkg.com/lightweight-typewriter@2.0.1/dist/TypeWriter.min.js"></script>
 ```
 
 Intall as a dependency:
