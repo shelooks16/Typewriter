@@ -10,7 +10,7 @@ Demo is available [here](https://shelooks16.github.io/Typewriter/)
 Add it to your html:
 
 ```html
-<script src="https://unpkg.com/lightweight-typewriter@2.0.4/dist/TypeWriter.min.js"></script>
+<script src="https://unpkg.com/lightweight-typewriter@2.0.5/dist/TypeWriter.min.js"></script>
 ```
 
 Intall as a dependency:
