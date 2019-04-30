@@ -1,6 +1,5 @@
 # Lightweight custom typewriter
 
-[![npm version](https://badgen.net/npm/v/lightweight-typewriter)](https://badgen.net/npm/v/lightweight-typewriter)
 [![size](https://img.badgesize.io/shelooks16/Typewriter/master/dist/TypeWriter.min.js)](https://img.badgesize.io/shelooks16/Typewriter/master/dist/TypeWriter.min.js)
 [![gzip size](https://img.badgesize.io/shelooks16/Typewriter/master/dist/TypeWriter.min.js?compression=gzip)](https://img.badgesize.io/shelooks16/Typewriter/master/dist/TypeWriter.min.js?compression=gzip)
 
@@ -11,7 +10,7 @@ Demo is available [here](https://shelooks16.github.io/Typewriter/)
 Add it to your html:
 
 ```html
-<script src="https://unpkg.com/lightweight-typewriter@2.0.0/dist/TypeWriter.js"></script>
+<script src="https://unpkg.com/lightweight-typewriter@2.0.4/dist/TypeWriter.min.js"></script>
 ```
 
 Intall as a dependency:
