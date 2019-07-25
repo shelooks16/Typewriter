@@ -1,7 +1,7 @@
 {
   "name": "lightweight-typewriter",
-  "main": "dist/TypeWriter.min.js",
-  "version": "2.0.5",
+  "main": "build/typewriter.min.js",
+  "version": "2.0.6",
   "description": "Lightweight typewriter",
   "keywords": [
     "typewriter",
@@ -16,5 +16,29 @@
     "type": "git",
     "url": "https://github.com/shelooks16/Typewriter.git"
   },
-  "homepage": "https://github.com/shelooks16/Typewriter#readme"
+  "homepage": "https://github.com/shelooks16/Typewriter#readme",
+  "scripts": {
+    "dev": "webpack --env=dev --progress --colors --watch && live-server",
+    "lint": "eslint src/**/*.js",
+    "format": "prettier --write src/**/*.js",
+    "build": "yarn format && webpack --env=dev && webpack --env=prod"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "concurrently": "^4.1.1",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-loader": "^2.2.1",
+    "eslint-plugin-import": "^2.18.2",
+    "live-server": "^1.2.1",
+    "prettier": "^1.18.2",
+    "webpack": "^4.37.0",
+    "webpack-cli": "^3.3.6",
+    "yargs": "^13.3.0"
+  }
 }

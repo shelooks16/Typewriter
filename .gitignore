@@ -1,8 +1,15 @@
+# dependencies
 /node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# page
+/demo
 
 # misc
-.cache
-package-lock.json
 .DS_Store
 .env.local
 .env.development.local
