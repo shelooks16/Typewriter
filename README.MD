@@ -11,10 +11,10 @@ Demo is available [here](https://lightweight-typewriter.surge.sh/)
 Add it to your html:
 
 ```html
-<script src="https://unpkg.com/lightweight-typewriter@2.0.7/build/typewriter.min.js"></script>
+<script src="https://unpkg.com/lightweight-typewriter@2.0.8/build/typewriter.min.js"></script>
 ```
 
-Intall as a dependency:
+or install as a dependency:
 
 ```js
 npm i lightweight-typewriter
@@ -25,7 +25,6 @@ Import:
 
 ```js
 const TypeWriter = require('lightweight-typewriter');
-// or
 import TypeWriter from 'lightweight-typewriter';
 ```
 
@@ -42,24 +41,53 @@ Create an element with the desired class name and create a class instance:
 </script>
 ```
 
-You can dynamically change all the properties via `applyChanges()` method:
+Done! Refresh the page and see the result :)
+
+### Customize
+
+If you would pass text to the element, it will be displayed in front of the typewriter and `margin-left: 6px` will be applied:
+
+```html
+<p class="type-write">Front Text</p>
+
+<script>
+  new TypeWriter('type-write').start();
+</script>
+
+<!-- Above results in: -->
+<p class="type-write">
+  Front Text<span style="margin-left: 6px">Typing text</span>
+</p>
+
+<!-- To control margin-left use indent property -->
+<script>
+  new TypeWriter('type-write', {
+    indent: '0px'
+  }).start();
+</script>
+```
+
+You can dynamically change all the properties with `applyChanges()` method:
 
 ```c
 const typeWriter = new TypeWriter('myCoolTypeWriter', {
-  staticText: 'Before you go',
   text: ['outside', 'inside'],
   speed: 500,
   pause: 1000,
+  indent: '2px',
   cursorStyle: {
     width: '3px',
     color: 'dodgerblue'
   }
 }).start();
 
-// change speed after 1 second
+// change speed and cursor after 1 second
 setTimeout(() => {
   typeWriter.applyChanges({
-    speed: 1500
+    speed: 1500,
+    cursorStyle: {
+      color: 'red'
+    }
     // ... other props
   })
 }, 1000);
@@ -74,7 +102,6 @@ const typeWriter = new TypeWriter('elemClass', {
 });
 
 // start typing when it's needed
-// staticText prop will be displayed regardless
 setTimeout(() => {
   typeWriter.start()
 }, 1000);
@@ -92,13 +119,13 @@ typeWriter.stop(2000)
 | -------------- | ----------- | ------------------------------------ | --------------------------------------- |
 | `elementClass` | string      | yes                                  | `'myCoolTypeWriter'`                    |
 | `text`         | array       | yes                                  | `['out', 'in']`                         |
-| `staticText`   | string      | no / `''`                            | `'Try me'`                              |
 | `speed`        | number (ms) | no / `1000`                          | `2000`                                  |
 | `pause`        | number (ms) | no / `1500`                          | `2000`                                  |
+| `indent`       | string      | no / `'0px' or '6px'`                | `'4px'`                                 |
 | `cursorStyle`  | object      | no / { color: '#000', width: '2px' } | `{ color: 'dodgerblue', width: '5px' }` |
 
+`elementClass` is the class name of target element \
 `text` is an array of typing strings\
-`staticText` is a string which will be displayed in front of the typing text\
 `speed` specifies the time needed to write a word\
 `pause` specifies the delay before the word starts deleting\
 `cursorStyle` is an optional object for styling typing cursor

@@ -1,10 +1,12 @@
 class TypeWriter {
   constructor(elementClass, { ...props }) {
     this.el = document.querySelector(`.${elementClass}`);
-    this.staticText = (props && props.staticText) || '';
     this.text = (props && props.text) || ['Default', 'Text'];
     this.speed = (props && parseInt(props.speed, 10)) || 1000;
     this.pause = (props && props.pause) || 1500;
+    this.indent = this.el.textContent
+      ? (props && props.indent) || '6px'
+      : '0px';
     this.cursorStyle = (props && props.cursorStyle) || {
       color: '#000',
       width: '2px'
@@ -16,8 +18,6 @@ class TypeWriter {
     this.isTyping = false;
     this.timer = 0;
 
-    this.staticEl = this.el.appendChild(document.createElement('span'));
-    this.staticEl.textContent = this.staticText;
     this.typingEl = this.el.appendChild(document.createElement('span'));
   }
 
@@ -66,9 +66,9 @@ class TypeWriter {
 
     this.currentLetters = this._getCurrentLetters(currentWord);
 
-    this.staticEl.textContent = `${this.staticText} `;
     this.typingEl.style.borderRight = `${this.cursorStyle.width ||
       '2px'} solid ${this.cursorStyle.color || '#000'}`;
+    this.typingEl.style.marginLeft = this.indent;
     this.typingEl.textContent = this.currentLetters;
 
     if (!this.isDeleting && this.currentLetters === currentWord) {
