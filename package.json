@@ -1,7 +1,7 @@
 {
   "name": "lightweight-typewriter",
   "main": "build/typewriter.min.js",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Lightweight typewriter",
   "keywords": [
     "typewriter",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/shelooks16/Typewriter#readme",
   "scripts": {
     "dev": "webpack --env=dev --progress --colors --watch && live-server",
+    "test": "jest --watch",
     "lint": "eslint src/**/*.js",
     "format": "prettier --write src/**/*.js",
     "build": "yarn format && webpack --env=dev && webpack --env=prod"
@@ -35,6 +36,7 @@
     "eslint-config-prettier": "^6.0.0",
     "eslint-loader": "^2.2.1",
     "eslint-plugin-import": "^2.18.2",
+    "jest": "^24.8.0",
     "live-server": "^1.2.1",
     "prettier": "^1.18.2",
     "webpack": "^4.37.0",

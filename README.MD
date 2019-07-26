@@ -11,7 +11,7 @@ Demo is available [here](https://lightweight-typewriter.surge.sh/)
 Add it to your html:
 
 ```html
-<script src="https://unpkg.com/lightweight-typewriter@2.0.6/build/typewriter.min.js"></script>
+<script src="https://unpkg.com/lightweight-typewriter@2.0.7/build/typewriter.min.js"></script>
 ```
 
 Intall as a dependency:

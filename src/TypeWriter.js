@@ -46,12 +46,12 @@ class TypeWriter {
       const hasProperty = Object.prototype.hasOwnProperty.call(this, prop);
       if (!hasProperty) {
         console.error(prop, 'is invalid thus was not applied');
+      }
+      if (prop === 'cursorStyle') {
+        this[prop] = { ...this[prop], ...val };
+      } else if (prop === 'speed' || prop === 'pause') {
+        this[prop] = parseInt(val, 10);
       } else {
-        if (prop === 'cursorStyle') {
-          this[prop] = { ...this[prop], ...val };
-        } else if (prop === 'speed' || prop === 'pause') {
-          this[prop] = parseInt(val, 10);
-        }
         this[prop] = val;
       }
     });
