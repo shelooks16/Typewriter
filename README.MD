@@ -4,6 +4,8 @@
 [![gzip size](https://img.badgesize.io/shelooks16/Typewriter/master/dist/TypeWriter.min.js?compression=gzip)](https://img.badgesize.io/shelooks16/Typewriter/master/build/typewriter.min.js?compression=gzip)
 [![gzip size](https://badge.fury.io/js/lightweight-typewriter.svg)](https://www.npmjs.com/package/lightweight-typewriter)
 
+<img src="https://i.imgur.com/LWtAMy0.gif" alt="preview" />
+
 Demo is available [here](https://lightweight-typewriter.surge.sh/)
 
 ## Usage
@@ -48,7 +50,9 @@ Done! Refresh the page and see the result :)
 If you would pass text to the element, it will be displayed in front of the typewriter and `margin-left: 6px` will be applied:
 
 ```html
-<p class="type-write">Front Text</p>
+<p class="type-write">
+  <span>Front Text</span>
+</p>
 
 <script>
   new TypeWriter('type-write').start();
@@ -56,7 +60,8 @@ If you would pass text to the element, it will be displayed in front of the type
 
 <!-- Above results in: -->
 <p class="type-write">
-  Front Text<span style="margin-left: 6px">Typing text</span>
+  <span>Front Text</span>
+  <span style="margin-left: 6px">Default Text</span>
 </p>
 
 <!-- To control margin-left use indent property -->
@@ -128,4 +133,5 @@ typeWriter.stop(2000)
 `text` is an array of typing strings\
 `speed` specifies the time needed to write a word\
 `pause` specifies the delay before the word starts deleting\
+`indent` is margin between front and typing texts \
 `cursorStyle` is an optional object for styling typing cursor
